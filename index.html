@@ -9,11 +9,11 @@
     </head>
     <body>
         <div class="container">
-            <div class="name-of-items">
-                <span>Имя контакта</span>
-                <span>Номер телефона</span>
-                <span>Почта</span>
-                <span>Действия</span>
+            <div class="container-of-items">
+                <span class="items-name">Имя контакта</span>
+                <span class="items-name">Номер телефона</span>
+                <span class="items-name">Почта</span>
+                <span class="items-name">Действия</span>
             </div>
             <div id="contactList" class="contact-list u-full-width"></div>
             <form id="addContactForm">
@@ -25,23 +25,20 @@
                             class="u-full-width"
                             placeholder="Введите имя."
                             required
-                            class="items"
                         />
                         <input
-                            type="text"
+                            type="tel"
                             id="contactNumberInput"
                             class="u-full-width"
                             placeholder="Введите номер телефона."
                             required
-                            class="items"
                         />
                         <input
-                            type="text"
+                            type="email"
                             id="contactEmailInput"
                             class="u-full-width"
                             placeholder="Введите почту."
                             required
-                            class="items"
                         />
                         <input
                             type="text"
@@ -49,7 +46,6 @@
                             class="u-full-width"
                             placeholder="Введите действие."
                             required
-                            class="items"
                         />
                     </div>
                     <div class="add-btn">
@@ -60,16 +56,12 @@
         </div>
 
         <script type="text/template" id="contactItemTemplate">
-            <div class="contact-item u-full-width {{doneClass}}" data-contact-id="{{id}}">
-                <table>
-                    <tr>
-                        <td class="items">{{name}}</td>
-                        <td class="items">{{number}}</td>
-                        <td class="items">{{email}}</td>
-                        <td class="items">{{action}}</td>
-                    </tr>
+            <div class="contact-item u-full-width" data-contact-id="{{id}}">
+                <div class="items">{{name}}</div>
+                <div class="items">{{number}}</div>
+                <div class="items">{{email}}</div>
+                <div class="items">{{action}}</div>
                 <span class="delete-btn">✘</span>
-                </table>
             </div>
         </script>
     </body>

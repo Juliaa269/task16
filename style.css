@@ -1,10 +1,12 @@
 .contact-list {
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 
 .formContacts {
     display: flex;
     justify-content: space-between;
+    margin-right: 350px;
+    margin-left: 350px;
 }
 
 .contact-item {
@@ -17,14 +19,17 @@
     background-color: lightyellow;
 }
 
-/* .items {
-    display: flex;
-    justify-content: space-between;
-} */
-
 .contact-item.done {
     background-color: lightgreen;
 }
+
+.contact-item {
+    display: flex;
+    justify-content: space-between;
+    margin-right: 300px;
+    margin-left: 300px;
+}
+
 .delete-btn {
     float: right;
 }
@@ -32,12 +37,18 @@
 .add-btn {
     display: flex;
     justify-content: center;
-    padding: 10px;
+    margin: 10px;
+    margin-top: 30px;
 }
 
-.name-of-items {
+.container-of-items {
     display: flex;
     justify-content: space-between;
-    margin-left: 20px;
-    margin-right: 140px;
+    margin-right: 300px;
+    margin-left: 280px;
+}
+
+.items-name {
+    margin-right: 150px;
+    margin-left: 30px;
 }
