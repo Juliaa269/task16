@@ -1,32 +1,35 @@
-const TASK_ITEM_CLASS = 'task-item';
+const TASK_ITEM_CLASS = 'contact-item';
 const DELETE_BTN_CLASS = 'delete-btn';
 const TASK_DONE_CLASS = 'done';
 
-const addTaskForm = document.getElementById('addTaskForm');
-const taskNameInput = document.getElementById('taskNameInput');
-const taskList = document.getElementById('taskList');
-const taskItemTemplate = document.getElementById('taskItemTemplate').innerHTML;
+const addContactForm = document.getElementById('addContactForm');
+const contactNameInput = document.getElementById('contactNameInput');
+const contactNumberInput = document.getElementById('contactNumberInput');
+const contactEmailInput = document.getElementById('contactEmailInput');
+const contactActionInput = document.getElementById('contactActionInput');
+const contactList = document.getElementById('contactList');
+const contactItemTemplate = document.getElementById('contactItemTemplate').innerHTML;
 
-let todoList = [];
+let addContactList = [];
 
-addTaskForm.addEventListener('submit', onAddTaskFormSubmit);
-taskList.addEventListener('click', onTaskListClick);
+addContactForm.addEventListener('submit', onAddContactFormSubmit);
+contactList.addEventListener('click', onContactListCLick);
 
 init();
 
-function onAddTaskFormSubmit(event) {
+function onAddContactFormSubmit(event) {
     event.preventDefault();
 
     submitForm();
 }
 
-function onTaskListClick(event) {
+function onContactListCLick(event) {
     switch (true) {
         case event.target.classList.contains(TASK_ITEM_CLASS):
-            toggleTaskState(event.target);
+            toggleContactState(event.target);
             break;
         case event.target.classList.contains(DELETE_BTN_CLASS):
-            deleteTask(event.target.parentElement);
+            deleteContact(event.target.parentElement);
             break;
     }
 }
@@ -37,55 +40,69 @@ function init() {
 }
 
 function submitForm() {
-    const todoItem = {
+    const contactItem = {
         // id: Math.random(),
         id: Date.now(),
-        title: taskNameInput.value,
+        nameContact: contactNameInput.value,
+        numberContact: contactNumberInput.value,
+        emailContact: contactEmailInput.value,
+        actionContact: contactActionInput.value,
         isDone: false,
     };
 
-    addTask(todoItem);
+    addContact(contactItem);
+    clearForm();
 }
 
 // document.getElementById("addTask").onclick = function(e) {
 //     document.getElementById("taskNameInput").value = "";
 // }
 
-function addTask(todoItem) {
-    todoList.push(todoItem);
+function addContact(contactItem) {
+    addContactList.push(contactItem);
 
     saveData();
 
-    renderTask(todoItem);
+    renderTask(contactItem);
+}
+
+function clearForm(){
+    contactNameInput.value = "";
+    contactNumberInput.value = "";
+    contactEmailInput.value = "";
+    contactActionInput.value = "";
 }
 
 function renderList() {
-    todoList.forEach((todoItem) => renderTask(todoItem));
+    addContactList.forEach((contactItem) => renderTask(contactItem));
 }
 
-function renderTask(todoItem) {
-    const html = taskItemTemplate
-        .replace('{{id}}', todoItem.id)
-        .replace('{{doneClass}}', todoItem.isDone ? TASK_DONE_CLASS : '')
-        .replace('{{title}}', todoItem.title);
-    taskList.insertAdjacentHTML('beforeend', html);
+function renderTask(contactItem) {
+    const html = contactItemTemplate
+        .replace('{{id}}', contactItem.id)
+        .replace('{{doneClass}}', contactItem.isDone ? TASK_DONE_CLASS : '')
+        .replace('{{name}}', contactItem.nameContact)
+        .replace('{{number}}', contactItem.numberContact)
+        .replace('{{email}}', contactItem.emailContact)
+        .replace('{{action}}', contactItem.actionContact)
+    contactList.insertAdjacentHTML('beforeend', html);
 }
 /// ====
-function toggleTaskState(el) {
-    console.log(el.dataset.todoId);
-    const todoId = el.dataset.todoId;
-    const todo = todoList.find((item) => item.id == todoId);
+function toggleContactState(el) {
+    console.log(el.dataset.contactId);
+    const contactId = el.dataset.contactId;
+    const contact = addContactList.find((item) => item.id == contactId);
 
-    todo.isDone = !todo.isDone;
+    contact.isDone = !contact.isDone;
 
     saveData();
 
     el.classList.toggle(TASK_DONE_CLASS);
 }
 /// ===
-function deleteTask(el) {
-    const todoId = +el.dataset.todoId;
-    todoList = todoList.filter((item) => item.id !== todoId);
+function deleteContact(el) {
+    const contactId = +el.dataset.contactId;
+    addContactList = addContactList.filter((item) => item.id !== contactId);
 
     saveData();
 
@@ -94,10 +111,10 @@ function deleteTask(el) {
 
 // ===
 function saveData() {
-    localStorage.setItem('todoList', JSON.stringify(todoList));
+    localStorage.setItem('addContactList', JSON.stringify(addContactList));
 }
 
 function restoreData() {
-    const data = localStorage.getItem('todoList');
-    todoList = data ? JSON.parse(data) : [];
+    const data = localStorage.getItem('addContactList');
+    addContactList = data ? JSON.parse(data) : [];
 }

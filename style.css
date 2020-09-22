@@ -1,7 +1,13 @@
-.task-list {
+.contact-list {
     margin-bottom: 20px;
 }
-.task-item {
+
+.formContacts {
+    display: flex;
+    justify-content: space-between;
+}
+
+.contact-item {
     color: #555;
     border: 1px solid #bbb;
     cursor: pointer;
@@ -11,9 +17,27 @@
     background-color: lightyellow;
 }
 
-.task-item.done {
+/* .items {
+    display: flex;
+    justify-content: space-between;
+} */
+
+.contact-item.done {
     background-color: lightgreen;
 }
 .delete-btn {
     float: right;
+}
+
+.add-btn {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
+
+.name-of-items {
+    display: flex;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 140px;
 }
